@@ -1,5 +1,11 @@
-function solution(strings, n) {
-  return strings.sort((prev, next) =>
-    prev[n] === next[n] ? prev.localeCompare(next) : prev[n].localeCompare(next[n])
-  );
+function solution(arr, divisor) {
+  var answer = [];
+
+  answer = arr.filter(target => !(target % divisor) ? true : false).sort((a, b) => a - b);
+
+  if (!answer.length) {
+    answer.push(-1);
+  }
+
+  return answer;
 }
