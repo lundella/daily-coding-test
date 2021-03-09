@@ -1,9 +1,9 @@
 // https://programmers.co.kr/learn/courses/30/lessons/68935#
 
 function solution(n) {
-  let sum = '';
+  let answer = '';
   let target = n;
-  let result = [];
+  let remainder = [];
   let iteration = true;
   const base = 3;
 
@@ -12,14 +12,14 @@ function solution(n) {
         iteration = false;
     }
       
-    result.push(target%base);
+    remainder.push(target%base);
     target = parseInt(target/base);
   }
   
-  sum = result.reduce((accu, value, index) => {
-    const power = (result.length-(index+1));
+  answer = remainder.reduce((accu, value, index) => {
+    const power = (remainder.length-(index+1));
     return accu + (Math.pow(base, power) * value);
   }, 0);
 
-  return sum;
+  return answer;
 }
