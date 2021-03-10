@@ -1,14 +1,20 @@
+// https://programmers.co.kr/learn/courses/30/lessons/12918#
+
 function solution(s) {
-  if (!s) {
-    return true;
-  } else if (s.length !== (4 || 6)) {
-    return false;
+  let answer = true;
+
+  if (s.length === 0) {
+    return answer;
+  } else if (!((s.length === 4) || (s.length === 6))) {
+    answer = false;
+    return answer;
   }
 
-  var answer = true;
-  var searchString = s.match(/[a-z]/gi);
-
-  answer = searchString ? false : true;
-
+  for (let index = 0; index < s.length; index++) {
+    if (isNaN(parseInt(s[index]))) {
+      answer = false;
+      break;
+    }
+  }
   return answer;
 }
