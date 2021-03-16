@@ -1,3 +1,5 @@
+https://programmers.co.kr/learn/courses/30/lessons/12926
+
 function solution(s, n) {
   let answer = '';    
   const stringArray = s.split('');
