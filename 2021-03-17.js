@@ -3,11 +3,15 @@
 function solution(n) {
   let answer = 0;
   
-  for(let index = 1; index <= n; index++) {
-      if(!(n%index)) {
-          answer += index;
+  for(let index = 1; index <= Math.ceil(n/2); index++) {
+      if(!(n%index) && index <= parseInt(n/index)) {
+          answer += index ;
+          
+          if(index !== parseInt(n/index)) {
+              answer += parseInt(n/index);
+          }
       }
   }
-  
+      
   return answer;
 }
