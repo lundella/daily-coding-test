@@ -1,19 +1,16 @@
+// https://programmers.co.kr/learn/courses/30/lessons/12930#
+
 function solution(s) {
   let answer = '';
-  let wordIndex = 0
-  const target = s.split('');
+  const target = s.split(' ');
   
-  answer = target.map(char => {
+  answer = target.map(word => {
       let result = '';
-      if(char.trim()) {
-          result = (wordIndex%2) ? char.toLowerCase(): char.toUpperCase();
-          wordIndex++;
-      } else {
-          result = char;
-          wordIndex = 0;
+      for(let index = 0; index < word.length; index++) {
+          result += (index%2)? word[index].toLowerCase(): word[index].toUpperCase();
       }
       return result;
   })
-
-  return answer.join('');
+  
+  return answer.join(' ');
 }
