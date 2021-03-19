@@ -1,7 +1,17 @@
 // https://programmers.co.kr/learn/courses/30/lessons/12931
-// 내부 함수 사용
+// 1의 자리를 누적하여 합산
 
 function solution(n)
 {
-    return n.toString().split('').reduce((sum, value) => sum+parseInt(value), 0);
+    let answer = 0;
+
+    for(let index = 0; index < 9; index++) {
+        if(!n) { 
+            break; 
+        }
+        answer += (n%Math.pow(10, 1));
+        n = parseInt(n/10);        
+    }
+
+    return answer;
 }
