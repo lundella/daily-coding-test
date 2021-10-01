@@ -1,3 +1,4 @@
+// https://programmers.co.kr/learn/courses/30/lessons/83201
 function rank(point) {
     let result = "";
     if(90 <= point) {
@@ -18,6 +19,16 @@ function rank(point) {
 function solution(scores) {
   const pointList = [];
   let ranked = '';
+
+  function findExtremeValue(student, extremevalue) {
+    if(pointList[student].findIndex(element=>element === extremevalue) === student) {
+      return pointList[student].filter(point => {
+        return point === extremevalue;
+      }).length;
+    } else {
+      return 0;
+    }
+  }
   
   for(let checker = 0; checker < scores.length; checker++) {
       let checkList = scores[checker];
@@ -31,34 +42,29 @@ function solution(scores) {
   }
   
   for(let student = 0; student < pointList.length; student++) {
-      const max = Math.max(...pointList[student]);
-      const min = Math.min(...pointList[student]);
+      let max = Math.max(...pointList[student])
+      let min = Math.min(...pointList[student]);
       
-      console.log(max, min);
-      let foundMatch = pointList[student].filter((point, index) => {
-        let target = -1;
-        if(index === student) {
-          target = point;
-        }
-          return (target === max) || (target === min);    
-      }).length;
-      
-      // console.log(foundMatch);
-  
-      if(foundMatch === 1) {
+      max = (max > 100)? 100: max;
+      min = (min > 100)? 100: min;
+
+      if(findExtremeValue(student, max) === 1) {
           pointList[student].splice(student, 1);
       }
-      
-      console.log(pointList[student])
+
+      if(findExtremeValue(student, min) === 1) {
+        pointList[student].splice(student, 1);
+    }
+
       ranked += rank(pointList[student].reduce((accu, value) => {
         return accu + value;
       }, 0)/pointList[student].length);
   }
   
-  console.log(ranked);
   return ranked;
 }
 
 // solution([[70, 49, 90], [68, 50, 38], [73, 31, 100]]);
-solution([[1,100,100],[0,100,100],[0,100,100]]);
-// solution([[100, 90, 20], [100, 87, 70], [100, 40, 20]]);
+// solution([[50,50,200],[100,80,100],[100,50,100]]);
+// solution([[50, 51, 49], [49, 50, 51], [51, 49, 50]]);
+solution([[75, 50, 100], [75, 100, 20], [100, 100, 20]]);
